@@ -25,12 +25,13 @@ import android.widget.EditText;
 
 public class Glavni_zaslon extends Activity {
 
-    Button btnOn, btnOff, btnRefresh;
+    Button btnOff, btnRefresh;
     TextView txtString, txtStringLength, sensorView0, sensorView1;
     Handler bluetoothIn;
-    EditText eText1, eText2;
-    String prejeto, stevilo_obratov, obseg;
+    EditText eText1;
+    String prejeto, stevilo_obratov;
     int stevka, stevka_dolzina;
+    float povrsina_entry;
     final int handlerState = 0;                        //used to identify handler message
     private BluetoothAdapter btAdapter = null;
     private BluetoothSocket btSocket = null;
@@ -51,7 +52,7 @@ public class Glavni_zaslon extends Activity {
         setContentView(R.layout.activity_glavni_zaslon);
 
         //Link the buttons and textViews to respective views
-        btnOn = (Button) findViewById(R.id.buttonOn);
+
         btnOff = (Button) findViewById(R.id.buttonOff);
         btnRefresh = (Button) findViewById(R.id.refresh);
         txtString = (TextView) findViewById(R.id.txtString);
@@ -59,7 +60,6 @@ public class Glavni_zaslon extends Activity {
         sensorView0 = (TextView) findViewById(R.id.sensorView0);
         sensorView1 = (TextView) findViewById(R.id.sensorView1);
         eText1 = (EditText) findViewById(R.id.editDolzina);
-        eText2 = (EditText) findViewById(R.id.editObseg);
 
         bluetoothIn = new Handler() {
             public void handleMessage(android.os.Message msg) {
@@ -86,17 +86,8 @@ public class Glavni_zaslon extends Activity {
 
                         }
 
-                        if (dataInPrint.charAt(0) == '+')
-                        {
-                        //preveri ali pravilno nastavili obseg
-                            prejeto=dataInPrint.substring(1,dataLength);
-                            if (prejeto.equals(eText2.getText().toString() )) {
-                                txtStringLength.setText("send-received: ok");
-//                                Toast.makeText(getBaseContext(), "OK", Toast.LENGTH_SHORT).show();
-                                btnOn.setBackgroundColor(0xFF00FF00);
-                            }
 
-                        }
+
                         if (dataInPrint.charAt(0) == '-' )
                         {
                         //preveri ali pravilno nastavili dolzino
@@ -125,25 +116,16 @@ public class Glavni_zaslon extends Activity {
             public void onClick(View v) {
 //                mConnectedThread.write("%!");    // Send "0" via Bluetooth
                 stevilo_obratov = eText1.getText().toString();
-                obseg=eText2.getText().toString();
-                stevka= Integer.parseInt(stevilo_obratov)*1000/Integer.parseInt(obseg);
+                povrsina_entry=Float.valueOf(eText1.getText().toString())*4100;
+                stevka= (int)povrsina_entry;
                 String str = "#" + Integer.toString(stevka) + "!";
                 stevka_dolzina=stevka;
                 mConnectedThread.write(str);    // Send str via Bluetooth
-//                Toast.makeText(getBaseContext(), "nastavljam dolzino...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "posiljam obrate:"+Integer.toString(stevka), Toast.LENGTH_SHORT).show();
                 btnOff.setBackgroundColor(0xFFFF0000);
             }
         });
 
-        btnOn.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-//                mConnectedThread.write("R!");    // Send "1" via Bluetooth
-                String str = "%" + eText2.getText().toString() + "!";
-                mConnectedThread.write(str);    // Send str via Bluetooth
-//                Toast.makeText(getBaseContext(), "nastavljam obseg...", Toast.LENGTH_SHORT).show();
-                btnOn.setBackgroundColor(0xFFFF0000);
-            }
-        });
 
         btnRefresh.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {

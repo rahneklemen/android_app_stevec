@@ -7,25 +7,17 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin" >
 
-    <Button
-        android:id="@+id/buttonOn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="Nastavi\nobseg" />
-
 
     <TextView
-        android:text="Dolzina(m):"
-        android:textSize="30sp"
-        android:gravity="center"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text="Površina(ha):"
+        android:textSize="30sp" />
 
     <TextView
         android:text="Hitrost(m/s):"
@@ -63,57 +55,34 @@
 
     <Button
         android:id="@+id/buttonOff"
-        android:padding="4dip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nastavi\ndolzino"
-        android:layout_below="@+id/buttonOn"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:id="@+id/editObseg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonOff"
-        android:layout_toLeftOf="@+id/textView3"
-        android:layout_toRightOf="@+id/buttonOn"
-        android:layout_toStartOf="@+id/textView3"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:text="1000" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/buttonOn"
+        android:padding="4dip"
+        android:text="Nastavi\npovršino" />
 
     <EditText
         android:id="@+id/editDolzina"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/buttonOff"
-        android:layout_toLeftOf="@+id/textView3"
+        android:layout_toEndOf="@+id/buttonOff"
         android:layout_toRightOf="@+id/buttonOff"
-        android:layout_toStartOf="@+id/textView3"
         android:ems="10"
         android:inputType="numberDecimal"
         android:text="0" />
 
     <TextView
-        android:text="m"
-        android:textSize="30sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/textView4"
-        android:layout_alignBottom="@+id/editDolzina"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:text="cm"
-        android:textSize="30sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        android:layout_alignBottom="@+id/editObseg"
+        android:layout_alignBottom="@+id/editDolzina"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:text="ha"
+        android:textSize="30sp" />
 
     <Button
         android:text="OSVEZI"
