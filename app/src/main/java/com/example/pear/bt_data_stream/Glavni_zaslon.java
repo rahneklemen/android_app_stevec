@@ -121,7 +121,7 @@ public class Glavni_zaslon extends Activity {
                 String str = "#" + Integer.toString(stevka) + "!";
                 stevka_dolzina=stevka;
                 mConnectedThread.write(str);    // Send str via Bluetooth
-                Toast.makeText(getBaseContext(), "posiljam obrate:"+Integer.toString(stevka), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getBaseContext(), "posiljam obrate:"+Integer.toString(stevka), Toast.LENGTH_SHORT).show();
                 btnOff.setBackgroundColor(0xFFFF0000);
             }
         });
